@@ -1,8 +1,8 @@
+using Assel.DTO;
+using Assel.Services;
 using Microsoft.AspNetCore.Mvc;
-using users.DTO;
-using users.Services;
 
-namespace users.Controllers
+namespace Assel.Controllers
 {
     [ApiController]
     [Route("[controller]")]
@@ -19,20 +19,6 @@ namespace users.Controllers
         public async Task<ActionResult<IEnumerable<UserDto>>> Get()
         {
             return Ok(await _userService.GetAll());
-        }
-
-        [HttpPost]
-        public async Task<ActionResult<UserDto>> Post(UserDto user)
-        {
-            await _userService.Add(user);
-            return CreatedAtAction(nameof(Get), new { id = user.Id }, user);
-        }
-
-        [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(int id)
-        {          
-            await _userService.Delete(id);
-            return NoContent();
         }
     }
 }

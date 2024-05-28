@@ -1,17 +1,16 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Assel.Entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using users.Entities;
 
-namespace users.Data
+namespace Assel.Data
 {
     internal sealed class UserConfiguration : IEntityTypeConfiguration<User>
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.HasIndex(x => x.Id).IsUnique();
-            builder.Property(x => x.FirstName).IsRequired().HasMaxLength(100);
-            builder.Property(x => x.Surname).IsRequired().HasMaxLength(100);
-            builder.Property(x => x.Login).IsRequired().HasMaxLength(100);
+            builder.HasMany(x => x.Facts);
+            builder.Property(x => x.Id).IsRequired().HasMaxLength(100);
+            builder.HasKey(x => x.Id);
         }
     }
 }

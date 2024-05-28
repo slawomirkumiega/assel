@@ -1,18 +1,23 @@
-﻿namespace users.Entities
+﻿namespace Assel.Entities
 {
     internal sealed class User
     {
-        public int Id { get; private set; }
-        public string FirstName { get; private set; }
-        public string Surname { get; private set; }
-        public string Login { get; private set; }
+        public string Id { get; private set; }
 
-        public User(int id, string firstName, string surname, string login)
+        public ICollection<Fact> Facts { get; private set; }
+
+        public User(string id)
         {
             Id = id;
-            FirstName = firstName;
-            Surname = surname;
-            Login = login;
+        }
+
+        public void AddFacts(IEnumerable<Fact> facts)
+        {
+            foreach (Fact fact in facts)
+            {
+                Facts = Facts ?? [];
+                Facts.Add(fact);
+            }
         }
     }
 }

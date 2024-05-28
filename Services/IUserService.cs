@@ -1,11 +1,9 @@
-﻿using users.DTO;
+﻿using Assel.DTO;
 
-namespace users.Services
+namespace Assel.Services
 {
     public interface IUserService
     {
         Task<IReadOnlyList<UserDto>> GetAll();
-        Task Add(UserDto userDto);
-        Task Delete(int id);
     }
 }
